@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Dorling-style cartogram of Australian state populations coloured by 2025 ADII score.",
+  "description": "Dorling-style cartogram of Australian state populations coloured by 2025 ADII score, with a compact custom population-size key.",
   "width": 700,
   "height": 500,
   "title": {
@@ -9,9 +9,7 @@
   },
   "data": {
     "url": "data/chart8_population_cartogram.csv",
-    "format": {
-      "type": "csv"
-    }
+    "format": {"type": "csv"}
   },
   "layer": [
     {
@@ -26,17 +24,13 @@
           "field": "x",
           "type": "quantitative",
           "axis": null,
-          "scale": {
-            "domain": [0, 100]
-          }
+          "scale": {"domain": [0, 100]}
         },
         "y": {
           "field": "y",
           "type": "quantitative",
           "axis": null,
-          "scale": {
-            "domain": [100, 0]
-          }
+          "scale": {"domain": [100, 0]}
         },
         "size": {
           "field": "population_thousands",
@@ -46,19 +40,7 @@
             "domain": [0, 9000],
             "range": [0, 15000]
           },
-          "legend": {
-            "title": "Population (circle area)",
-            "values": [500, 2000, 5000],
-            "labelExpr": "datum.value >= 1000 ? format(datum.value/1000, '.1f') + 'm' : format(datum.value, '.0f') + 'k'",
-            "orient": "right",
-            "columns": 1,
-            "symbolFillColor": "#D6DEE8",
-            "symbolStrokeColor": "#6C757D",
-            "symbolOpacity": 0.85,
-            "labelOffset": 8,
-            "rowPadding": 2,
-            "offset": 10
-          }
+          "legend": null
         },
         "color": {
           "field": "adii",
@@ -67,28 +49,12 @@
             "scheme": "blues",
             "domain": [69, 80]
           },
-          "legend": {
-            "title": "ADII score"
-          }
+          "legend": {"title": "ADII score"}
         },
         "tooltip": [
-          {
-            "field": "state",
-            "type": "nominal",
-            "title": "State / territory"
-          },
-          {
-            "field": "population_thousands",
-            "type": "quantitative",
-            "title": "Population ('000)",
-            "format": ",.1f"
-          },
-          {
-            "field": "adii",
-            "type": "quantitative",
-            "title": "ADII 2025",
-            "format": ".1f"
-          }
+          {"field": "state", "type": "nominal", "title": "State / territory"},
+          {"field": "population_thousands", "type": "quantitative", "title": "Population ('000)", "format": ",.1f"},
+          {"field": "adii", "type": "quantitative", "title": "ADII 2025", "format": ".1f"}
         ]
       }
     },
@@ -101,29 +67,11 @@
         "dy": -5
       },
       "encoding": {
-        "x": {
-          "field": "x",
-          "type": "quantitative",
-          "scale": {
-            "domain": [0, 100]
-          }
-        },
-        "y": {
-          "field": "y",
-          "type": "quantitative",
-          "scale": {
-            "domain": [100, 0]
-          }
-        },
-        "text": {
-          "field": "abbr",
-          "type": "nominal"
-        },
+        "x": {"field": "x", "type": "quantitative", "scale": {"domain": [0, 100]}},
+        "y": {"field": "y", "type": "quantitative", "scale": {"domain": [100, 0]}},
+        "text": {"field": "abbr", "type": "nominal"},
         "color": {
-          "condition": {
-            "test": "datum.adii >= 77",
-            "value": "white"
-          },
+          "condition": {"test": "datum.adii >= 77", "value": "white"},
           "value": "#202124"
         }
       }
@@ -142,39 +90,95 @@
         "dy": 11
       },
       "encoding": {
-        "x": {
-          "field": "x",
-          "type": "quantitative",
-          "scale": {
-            "domain": [0, 100]
-          }
-        },
-        "y": {
-          "field": "y",
-          "type": "quantitative",
-          "scale": {
-            "domain": [100, 0]
-          }
-        },
-        "text": {
-          "field": "pop_label",
-          "type": "nominal"
-        },
+        "x": {"field": "x", "type": "quantitative", "scale": {"domain": [0, 100]}},
+        "y": {"field": "y", "type": "quantitative", "scale": {"domain": [100, 0]}},
+        "text": {"field": "pop_label", "type": "nominal"},
         "color": {
-          "condition": {
-            "test": "datum.adii >= 77",
-            "value": "white"
-          },
+          "condition": {"test": "datum.adii >= 77", "value": "white"},
           "value": "#202124"
         }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {"x": 92, "y": 10, "label": "Population"}
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "font": "IBM Plex Sans",
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "align": "center",
+        "color": "#212529"
+      },
+      "encoding": {
+        "x": {"field": "x", "type": "quantitative", "scale": {"domain": [0, 100]}},
+        "y": {"field": "y", "type": "quantitative", "scale": {"domain": [100, 0]}},
+        "text": {"field": "label", "type": "nominal"}
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {"x": 92, "y": 21, "population": 8000, "label": "8.0m"},
+          {"x": 92, "y": 36, "population": 5000, "label": "5.0m"},
+          {"x": 92, "y": 48, "population": 2000, "label": "2.0m"},
+          {"x": 92, "y": 57, "population": 500, "label": "500k"}
+        ]
+      },
+      "mark": {
+        "type": "circle",
+        "filled": true,
+        "fill": "#D6DEE8",
+        "fillOpacity": 0.9,
+        "stroke": "#6C757D",
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "x": {"field": "x", "type": "quantitative", "scale": {"domain": [0, 100]}},
+        "y": {"field": "y", "type": "quantitative", "scale": {"domain": [100, 0]}},
+        "size": {
+          "field": "population",
+          "type": "quantitative",
+          "scale": {
+            "type": "sqrt",
+            "domain": [0, 8000],
+            "range": [500, 3600]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {"x": 92, "y": 21, "label": "8.0m"},
+          {"x": 92, "y": 36, "label": "5.0m"},
+          {"x": 92, "y": 48, "label": "2.0m"},
+          {"x": 92, "y": 57, "label": "500k"}
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "font": "IBM Plex Sans",
+        "fontSize": 9,
+        "fontWeight": "bold",
+        "align": "center",
+        "baseline": "middle",
+        "color": "#343A40"
+      },
+      "encoding": {
+        "x": {"field": "x", "type": "quantitative", "scale": {"domain": [0, 100]}},
+        "y": {"field": "y", "type": "quantitative", "scale": {"domain": [100, 0]}},
+        "text": {"field": "label", "type": "nominal"}
       }
     }
   ],
   "config": {
     "background": null,
-    "view": {
-      "stroke": null
-    },
+    "view": {"stroke": null},
     "title": {
       "font": "IBM Plex Sans",
       "fontSize": 20,
