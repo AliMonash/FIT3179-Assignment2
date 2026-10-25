@@ -1,0 +1,210 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Ordered dot plot of customer satisfaction by channel.",
+  "width": 700,
+  "height": 230,
+  "title": {
+    "text": "Face-to-face still delivers the highest satisfaction",
+    "subtitle": "Despite the shift to digital, online service records the lowest agency-level satisfaction."
+  },
+  "data": {
+    "url": "data/chart3_channel_satisfaction_2025_26.csv",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "strokeDash": [
+          4,
+          4
+        ],
+        "color": "#6C757D"
+      },
+      "encoding": {
+        "x": {
+          "aggregate": "max",
+          "field": "agency_result",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              70,
+              90
+            ]
+          },
+          "axis": {
+            "title": "Customer satisfaction (0–100)"
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 160,
+        "stroke": "white",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "y": {
+          "field": "channel",
+          "type": "nominal",
+          "sort": "-x",
+          "axis": {
+            "title": null
+          }
+        },
+        "x": {
+          "field": "satisfaction",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              70,
+              90
+            ]
+          }
+        },
+        "color": {
+          "field": "channel_type",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Staff-assisted",
+              "Digital"
+            ],
+            "range": [
+              "#1565C0",
+              "#00897B"
+            ]
+          },
+          "legend": {
+            "title": null,
+            "orient": "bottom"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "channel",
+            "type": "nominal",
+            "title": "Channel"
+          },
+          {
+            "field": "satisfaction",
+            "type": "quantitative",
+            "title": "Satisfaction",
+            "format": ".1f"
+          },
+          {
+            "field": "channel_type",
+            "type": "nominal",
+            "title": "Channel type"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "y": {
+          "field": "channel",
+          "type": "nominal",
+          "sort": "-x"
+        },
+        "x": {
+          "field": "satisfaction",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "satisfaction",
+          "type": "quantitative",
+          "format": ".1f"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 78.3,
+            "channel": "Face to face",
+            "label": "Agency average 78.3"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 7,
+        "dy": -27,
+        "fontSize": 10,
+        "fontWeight": "bold",
+        "color": "#6C757D",
+        "font": "IBM Plex Sans"
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              70,
+              90
+            ]
+          }
+        },
+        "y": {
+          "field": "channel",
+          "type": "nominal",
+          "sort": [
+            "Face to face",
+            "Mobile apps",
+            "Telephony",
+            "Online"
+          ]
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": null,
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFont": "IBM Plex Sans",
+      "titleFont": "IBM Plex Sans",
+      "labelColor": "#343A40",
+      "titleColor": "#343A40",
+      "gridColor": "#E9ECEF",
+      "domainColor": "#ADB5BD",
+      "tickColor": "#CED4DA"
+    },
+    "legend": {
+      "labelFont": "IBM Plex Sans",
+      "titleFont": "IBM Plex Sans",
+      "labelColor": "#343A40",
+      "titleColor": "#343A40"
+    },
+    "title": {
+      "font": "IBM Plex Sans",
+      "fontSize": 20,
+      "fontWeight": "bold",
+      "subtitleFont": "IBM Plex Sans",
+      "subtitleFontSize": 12,
+      "subtitleColor": "#6C757D",
+      "anchor": "start",
+      "color": "#212529"
+    }
+  }
+}

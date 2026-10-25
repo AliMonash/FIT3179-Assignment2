@@ -1,0 +1,221 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Slopegraph showing channel satisfaction changes from 2024-25 to 2025-26.",
+  "width": 700,
+  "height": 300,
+  "title": {
+    "text": "Satisfaction improved slightly across every channel",
+    "subtitle": "A clean comparison using only 2024–25 and 2025–26, after the 2024–25 weighting-method change."
+  },
+  "data": {
+    "url": "data/chart5_channel_satisfaction_change.csv",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "sort": [
+            "2024-25",
+            "2025-26"
+          ],
+          "axis": {
+            "title": null,
+            "labelAngle": 0
+          }
+        },
+        "y": {
+          "field": "satisfaction",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              70,
+              90
+            ]
+          },
+          "axis": {
+            "title": "Customer satisfaction (0–100)"
+          }
+        },
+        "color": {
+          "field": "channel",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Face to face",
+              "Mobile apps",
+              "Telephony",
+              "Online"
+            ],
+            "range": [
+              "#1565C0",
+              "#00897B",
+              "#7E57C2",
+              "#E67E22"
+            ]
+          },
+          "legend": {
+            "title": null,
+            "orient": "bottom"
+          }
+        },
+        "detail": {
+          "field": "channel"
+        },
+        "tooltip": [
+          {
+            "field": "channel",
+            "type": "nominal",
+            "title": "Channel"
+          },
+          {
+            "field": "year",
+            "type": "nominal",
+            "title": "Year"
+          },
+          {
+            "field": "satisfaction",
+            "type": "quantitative",
+            "title": "Satisfaction",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 110,
+        "stroke": "white",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "sort": [
+            "2024-25",
+            "2025-26"
+          ]
+        },
+        "y": {
+          "field": "satisfaction",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "channel",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Face to face",
+              "Mobile apps",
+              "Telephony",
+              "Online"
+            ],
+            "range": [
+              "#1565C0",
+              "#00897B",
+              "#7E57C2",
+              "#E67E22"
+            ]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year === '2025-26'"
+        },
+        {
+          "calculate": "'+' + format(datum.delta_to_2025_26, '.1f')",
+          "as": "delta_label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "sort": [
+            "2024-25",
+            "2025-26"
+          ]
+        },
+        "y": {
+          "field": "satisfaction",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "delta_label",
+          "type": "nominal"
+        },
+        "color": {
+          "field": "channel",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Face to face",
+              "Mobile apps",
+              "Telephony",
+              "Online"
+            ],
+            "range": [
+              "#1565C0",
+              "#00897B",
+              "#7E57C2",
+              "#E67E22"
+            ]
+          },
+          "legend": null
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": null,
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFont": "IBM Plex Sans",
+      "titleFont": "IBM Plex Sans",
+      "labelColor": "#343A40",
+      "titleColor": "#343A40",
+      "gridColor": "#E9ECEF",
+      "domainColor": "#ADB5BD",
+      "tickColor": "#CED4DA"
+    },
+    "legend": {
+      "labelFont": "IBM Plex Sans",
+      "titleFont": "IBM Plex Sans",
+      "labelColor": "#343A40",
+      "titleColor": "#343A40"
+    },
+    "title": {
+      "font": "IBM Plex Sans",
+      "fontSize": 20,
+      "fontWeight": "bold",
+      "subtitleFont": "IBM Plex Sans",
+      "subtitleFontSize": 12,
+      "subtitleColor": "#6C757D",
+      "anchor": "start",
+      "color": "#212529"
+    }
+  }
+}

@@ -1,0 +1,284 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Services Australia digital interaction results with a visible methodology break.",
+  "width": 700,
+  "height": 300,
+  "title": {
+    "text": "Digital interaction has stabilised around 95%",
+    "subtitle": [
+      "Circles show results; diamonds show annual targets.",
+      "2023–24 is context only because the methodology changed in 2024–25."
+    ]
+  },
+  "data": {
+    "url": "data/chart1_digital_interactions.csv",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "sort": [
+        "2023-24",
+        "2024-25",
+        "2025-26"
+      ],
+      "axis": {
+        "title": null,
+        "labelAngle": 0
+      }
+    }
+  },
+  "layer": [
+    {
+      "transform": [
+        {
+          "filter": "datum.methodology_group === 'Current methodology'"
+        }
+      ],
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3,
+        "color": "#1565C0"
+      },
+      "encoding": {
+        "y": {
+          "field": "result_percent",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              80,
+              100
+            ]
+          },
+          "axis": {
+            "title": "Customer interactions through digital services (%)"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "year",
+            "type": "nominal",
+            "title": "Year"
+          },
+          {
+            "field": "result_percent",
+            "type": "quantitative",
+            "title": "Result",
+            "format": ".1f"
+          },
+          {
+            "field": "target_percent",
+            "type": "quantitative",
+            "title": "Target",
+            "format": ".1f"
+          },
+          {
+            "field": "methodology_note",
+            "type": "nominal",
+            "title": "Methodology"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 120,
+        "stroke": "white",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "y": {
+          "field": "result_percent",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "methodology_group",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Previous methodology",
+              "Current methodology"
+            ],
+            "range": [
+              "#ADB5BD",
+              "#1565C0"
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "year",
+            "type": "nominal",
+            "title": "Year"
+          },
+          {
+            "field": "result_percent",
+            "type": "quantitative",
+            "title": "Result (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "target_percent",
+            "type": "quantitative",
+            "title": "Target (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "methodology_note",
+            "type": "nominal",
+            "title": "Methodology"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": -14,
+        "fontWeight": "bold",
+        "color": "#212529"
+      },
+      "encoding": {
+        "y": {
+          "field": "result_percent",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "result_percent",
+          "type": "quantitative",
+          "format": ".1f"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "shape": "diamond",
+        "filled": true,
+        "size": 70,
+        "color": "#6C757D"
+      },
+      "encoding": {
+        "y": {
+          "field": "target_percent",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "year",
+            "type": "nominal"
+          },
+          {
+            "field": "target_percent",
+            "type": "quantitative",
+            "title": "Target (%)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "year": "2024-25"
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "strokeDash": [
+          5,
+          5
+        ],
+        "color": "#E67E22"
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "sort": [
+            "2023-24",
+            "2024-25",
+            "2025-26"
+          ]
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "year": "2024-25",
+            "y": 99.2,
+            "label": "Methodology changed"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 8,
+        "dy": 0,
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "color": "#E67E22"
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "sort": [
+            "2023-24",
+            "2024-25",
+            "2025-26"
+          ]
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": null,
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFont": "IBM Plex Sans",
+      "titleFont": "IBM Plex Sans",
+      "labelColor": "#343A40",
+      "titleColor": "#343A40",
+      "gridColor": "#E9ECEF",
+      "domainColor": "#ADB5BD",
+      "tickColor": "#CED4DA"
+    },
+    "legend": {
+      "labelFont": "IBM Plex Sans",
+      "titleFont": "IBM Plex Sans",
+      "labelColor": "#343A40",
+      "titleColor": "#343A40"
+    },
+    "title": {
+      "font": "IBM Plex Sans",
+      "fontSize": 20,
+      "fontWeight": "bold",
+      "subtitleFont": "IBM Plex Sans",
+      "subtitleFontSize": 12,
+      "subtitleColor": "#6C757D",
+      "anchor": "start",
+      "color": "#212529"
+    }
+  }
+}

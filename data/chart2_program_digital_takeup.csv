@@ -1,0 +1,5 @@
+program,take_up_percent,self_manage_percent,is_total,source_page,source_url
+Social security,89.6,89.2,No,36,https://www.servicesaustralia.gov.au/sites/default/files/2026-10/annual-report-2025-26.pdf
+Health,97.1,96.8,No,36,https://www.servicesaustralia.gov.au/sites/default/files/2026-10/annual-report-2025-26.pdf
+Child support,68.6,67.1,No,36,https://www.servicesaustralia.gov.au/sites/default/files/2026-10/annual-report-2025-26.pdf
+Total,95.3,95.0,Yes,36,https://www.servicesaustralia.gov.au/sites/default/files/2026-10/annual-report-2025-26.pdf

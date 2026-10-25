@@ -1,0 +1,299 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Ranked lollipop-style chart of digitally excluded or highly excluded Australians by selected group in 2025.",
+  "width": 700,
+  "height": 360,
+  "title": {
+    "text": "Digital exclusion is concentrated among already disadvantaged groups",
+    "subtitle": "Share of each group classified as excluded or highly excluded in the 2025 ADII."
+  },
+  "data": {
+    "url": "data/chart12_digital_exclusion_groups.csv",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "layer": [
+    {
+      "data": {
+        "values": [
+          {
+            "baseline": 20.6
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "strokeDash": [
+          6,
+          4
+        ],
+        "strokeWidth": 2,
+        "color": "#6C757D"
+      },
+      "encoding": {
+        "x": {
+          "field": "baseline",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              75
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "bar",
+        "size": 4,
+        "color": "#D9DEE3"
+      },
+      "encoding": {
+        "y": {
+          "field": "group",
+          "type": "nominal",
+          "sort": [
+            "People aged 75+",
+            "Did not complete secondary school",
+            "Public housing residents",
+            "First Nations people",
+            "Australian population"
+          ],
+          "axis": {
+            "title": null,
+            "labelLimit": 260,
+            "labelFontSize": 12
+          }
+        },
+        "x": {
+          "field": "excluded_percent",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              75
+            ]
+          },
+          "axis": {
+            "title": "Excluded or highly excluded (%)",
+            "tickCount": 8,
+            "grid": true
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 180,
+        "stroke": "white",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "y": {
+          "field": "group",
+          "type": "nominal",
+          "sort": [
+            "People aged 75+",
+            "Did not complete secondary school",
+            "Public housing residents",
+            "First Nations people",
+            "Australian population"
+          ]
+        },
+        "x": {
+          "field": "excluded_percent",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              75
+            ]
+          }
+        },
+        "color": {
+          "condition": {
+            "test": "datum.is_national === 'Yes'",
+            "value": "#6C757D"
+          },
+          "value": "#D1495B"
+        },
+        "tooltip": [
+          {
+            "field": "group",
+            "type": "nominal",
+            "title": "Group"
+          },
+          {
+            "field": "excluded_percent",
+            "type": "quantitative",
+            "title": "Excluded or highly excluded",
+            "format": ".1f"
+          },
+          {
+            "field": "multiple_of_national",
+            "type": "quantitative",
+            "title": "Times national rate",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "fontSize": 11,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "y": {
+          "field": "group",
+          "type": "nominal",
+          "sort": [
+            "People aged 75+",
+            "Did not complete secondary school",
+            "Public housing residents",
+            "First Nations people",
+            "Australian population"
+          ]
+        },
+        "x": {
+          "field": "excluded_percent",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              75
+            ]
+          }
+        },
+        "text": {
+          "field": "excluded_percent",
+          "type": "quantitative",
+          "format": ".1f"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.is_national === 'Yes'",
+            "value": "#6C757D"
+          },
+          "value": "#B23A2D"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.is_national === 'No'"
+        },
+        {
+          "calculate": "format(datum.multiple_of_national, '.1f') + '\u00d7 national rate'",
+          "as": "multiple_label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 44,
+        "fontSize": 10,
+        "color": "#6C757D"
+      },
+      "encoding": {
+        "y": {
+          "field": "group",
+          "type": "nominal",
+          "sort": [
+            "People aged 75+",
+            "Did not complete secondary school",
+            "Public housing residents",
+            "First Nations people",
+            "Australian population"
+          ]
+        },
+        "x": {
+          "field": "excluded_percent",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              75
+            ]
+          }
+        },
+        "text": {
+          "field": "multiple_label",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "baseline": 20.6,
+            "label": "National rate: 20.6%"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 7,
+        "dy": -150,
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "color": "#6C757D"
+      },
+      "encoding": {
+        "x": {
+          "field": "baseline",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              75
+            ]
+          }
+        },
+        "text": {
+          "field": "label",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": null,
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFont": "IBM Plex Sans",
+      "titleFont": "IBM Plex Sans",
+      "labelColor": "#343A40",
+      "titleColor": "#343A40",
+      "gridColor": "#E9ECEF",
+      "domainColor": "#ADB5BD",
+      "tickColor": "#CED4DA"
+    },
+    "title": {
+      "font": "IBM Plex Sans",
+      "fontSize": 20,
+      "fontWeight": "bold",
+      "subtitleFont": "IBM Plex Sans",
+      "subtitleFontSize": 12,
+      "subtitleColor": "#6C757D",
+      "anchor": "start",
+      "color": "#212529"
+    },
+    "legend": {
+      "labelFont": "IBM Plex Sans",
+      "titleFont": "IBM Plex Sans"
+    }
+  }
+}

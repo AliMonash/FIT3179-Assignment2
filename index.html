@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Australia's Digital Divide — an interactive Vega-Lite story about digital government services and digital inclusion in Australia.">
+  <title>Australia's Digital Divide</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Vega / Vega-Lite / Vega Embed -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+
+<main class="page">
+
+  <header class="hero">
+    <h1>Australia's Digital Divide</h1>
+    <p>
+      Government services are increasingly digital, but not every Australian has
+      the same ability to access, afford and confidently use the technologies
+      needed to benefit from that shift.
+    </p>
+  </header>
+
+  <!-- SECTION 1 -->
+  <section>
+    <div class="section-heading">
+      <p class="eyebrow">01 · The digital shift</p>
+      <h2>Australia is becoming a digital-government society</h2>
+      <p>
+        Most interactions with Services Australia now happen digitally. But the
+        level of digital self-service still differs substantially between programs.
+      </p>
+    </div>
+
+    <div class="chart-card">
+      <div id="chart1" class="chart"></div>
+      <p class="insight">
+        Digital interactions have stabilised at around 95% under the current
+        measurement method. The methodology changed in 2024–25, so the earlier
+        result is shown only as context.
+      </p>
+      <p class="source">Source: <a href="https://www.servicesaustralia.gov.au/sites/default/files/2026-10/annual-report-2025-26.pdf" target="_blank" rel="noopener">Services Australia, Annual Report 2025–26</a>.</p>
+    </div>
+
+    <div class="chart-card">
+      <div id="chart2" class="chart"></div>
+      <p class="insight">
+        Health services are almost entirely self-managed digitally, while Child
+        Support remains considerably less digital.
+      </p>
+      <p class="source">Source: <a href="https://www.servicesaustralia.gov.au/sites/default/files/2026-10/annual-report-2025-26.pdf" target="_blank" rel="noopener">Services Australia, Annual Report 2025–26</a>.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 2 -->
+  <section>
+    <div class="section-heading">
+      <p class="eyebrow">02 · Experience matters</p>
+      <h2>Digital does not always mean a better experience</h2>
+      <p>
+        Digital channels dominate service delivery, yet customers still report
+        their highest satisfaction when receiving face-to-face assistance.
+      </p>
+    </div>
+
+    <div class="chart-card">
+      <div id="chart3" class="chart"></div>
+      <p class="insight">
+        Face-to-face service scores 88.0, compared with only 73.3 for online
+        service. The agency average provides a useful benchmark between them.
+      </p>
+      <p class="source">Source: <a href="https://www.servicesaustralia.gov.au/sites/default/files/2026-10/annual-report-2025-26.pdf" target="_blank" rel="noopener">Services Australia, Annual Report 2025–26</a>.</p>
+    </div>
+
+    <div class="chart-card">
+      <div id="chart5" class="chart"></div>
+      <p class="insight">
+        Satisfaction improved across every channel in 2025–26, but the ranking
+        of the channels did not change.
+      </p>
+      <p class="source">Sources: <a href="https://www.servicesaustralia.gov.au/sites/default/files/2025-10/annual-report-2024-25.pdf" target="_blank" rel="noopener">Services Australia, Annual Report 2024–25</a> and <a href="https://www.servicesaustralia.gov.au/sites/default/files/2026-10/annual-report-2025-26.pdf" target="_blank" rel="noopener">Annual Report 2025–26</a>.</p>
+    </div>
+
+    <div class="chart-card">
+      <div id="chart4" class="chart"></div>
+      <p class="insight">
+        Fair treatment performs strongly across programs, while time and effort
+        remain major weaknesses, particularly for Child Support.
+      </p>
+      <p class="source">Source: <a href="https://www.servicesaustralia.gov.au/sites/default/files/2026-10/annual-report-2025-26.pdf" target="_blank" rel="noopener">Services Australia, Annual Report 2025–26</a>.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 3 -->
+  <section>
+    <div class="section-heading">
+      <p class="eyebrow">03 · Place shapes participation</p>
+      <h2>But can every Australian participate equally?</h2>
+      <p>
+        Australia may be highly digital overall, but digital inclusion is not
+        evenly distributed across the country.
+      </p>
+    </div>
+
+    <div class="definition"><strong>What is the ADII?</strong> The Australian Digital Inclusion Index measures whether people can access digital technologies, afford appropriate connectivity, and use digital tools confidently. Scores run from 0 to 100; higher scores indicate greater digital inclusion.</div>
+
+    <div class="chart-card">
+      <div id="chart6" class="chart"></div>
+      <p class="insight">
+        The ACT records the highest 2025 Digital Inclusion Index score at 79.5,
+        while Tasmania records the lowest at 69.4.
+      </p>
+      <p class="source">Sources: <a href="https://digitalinclusionindex.org.au/wp-content/uploads/2025/10/ADII-Report-2025_V6-Remediated.pdf" target="_blank" rel="noopener">2025 Australian Digital Inclusion Index</a>. Map geometry: <a href="https://github.com/syncfusion/flutter-examples/blob/dee00ad6c7f785dcf5e7f326c6d528ed5b2643bc/assets/australia.json" target="_blank" rel="noopener">Australia GeoJSON</a>.</p>
+    </div>
+
+    <div class="chart-card">
+      <div id="chart7" class="chart"></div>
+      <p class="insight">
+        The First Nations digital inclusion gap is largest in the Northern
+        Territory (17.3 points) and Western Australia (15.1 points), where remote
+        and very remote communities make up a larger share of the population.
+      </p>
+      <p class="source">Sources: <a href="https://digitalinclusionindex.org.au/wp-content/uploads/2025/11/2025-Snapshot_Measuring-Digital-Inclusion-for-First-Nations-Australians.pdf" target="_blank" rel="noopener">2025 First Nations Digital Inclusion Snapshot</a>. Map geometry: <a href="https://github.com/syncfusion/flutter-examples/blob/dee00ad6c7f785dcf5e7f326c6d528ed5b2643bc/assets/australia.json" target="_blank" rel="noopener">Australia GeoJSON</a>.</p>
+    </div>
+
+    <div class="chart-card">
+      <div id="chart8" class="chart"></div>
+      <p class="insight">
+        A population-scaled view shifts attention away from Australia's largest
+        land areas. New South Wales, Victoria and Queensland dominate the
+        population picture, while the Northern Territory becomes comparatively small.
+      </p>
+      <p class="source">Sources: <a href="https://www.abs.gov.au/statistics/people/population/national-state-and-territory-population/latest-release" target="_blank" rel="noopener">ABS, National, state and territory population (March 2026)</a>; <a href="https://digitalinclusionindex.org.au/wp-content/uploads/2025/10/ADII-Report-2025_V6-Remediated.pdf" target="_blank" rel="noopener">2025 ADII</a>.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 4 -->
+  <section>
+    <div class="section-heading">
+      <p class="eyebrow">04 · Distance compounds the gap</p>
+      <h2>Distance still shapes digital opportunity</h2>
+      <p>
+        State averages hide an important geographic pattern: digital inclusion
+        generally declines as communities become more remote, with the largest
+        disadvantage appearing in very remote Australia.
+      </p>
+    </div>
+
+    <div class="chart-card">
+      <div id="chart9" class="chart"></div>
+      <p class="insight">
+        Very remote Australia records an overall ADII score of 62.5. Access is
+        the sharpest weakness, falling to 57.4 compared with 78.3 in major cities.
+      </p>
+      <p class="source">Source: <a href="https://digitalinclusionindex.org.au/wp-content/uploads/2025/10/ADII-Report-2025_V6-Remediated.pdf" target="_blank" rel="noopener">2025 Australian Digital Inclusion Index</a>.</p>
+    </div>
+
+    <div class="chart-card">
+      <div id="chart10" class="chart"></div>
+      <p class="insight">
+        Capital cities outperform the rest of Australia across every 2025 ADII
+        dimension. Using the report's unrounded estimates, the largest difference
+        is in Digital Ability at 7.8 points.
+      </p>
+      <p class="source">Source: <a href="https://digitalinclusionindex.org.au/wp-content/uploads/2025/10/ADII-Report-2025_V6-Remediated.pdf" target="_blank" rel="noopener">2025 Australian Digital Inclusion Index</a>.</p>
+    </div>
+
+    <div class="chart-card">
+      <div id="chart11" class="chart"></div>
+      <p class="insight">
+        Between 2023 and 2025, Australia's Access score increased by 4.8 points,
+        while Digital Ability increased by 8.7 points. The country moved
+        simultaneously toward better connectivity and stronger digital skills.
+      </p>
+      <p class="source">Sources: <a href="https://digitalinclusionindex.org.au/wp-content/uploads/2025/10/ADII-Report-2025_V6-Remediated.pdf" target="_blank" rel="noopener">2025 ADII</a> and <a href="https://digitalinclusionindex.org.au/wp-content/uploads/2025/09/ADII-2023-Summary_FINAL-Remediated.pdf" target="_blank" rel="noopener">2023 ADII</a>.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 5 -->
+  <section>
+    <div class="section-heading">
+      <p class="eyebrow">05 · Who is left behind?</p>
+      <h2>Who risks being left behind?</h2>
+      <p>
+        Australia's digital transition is progressing, but exclusion remains
+        concentrated among groups that already face social and economic barriers.
+      </p>
+    </div>
+
+    <div class="chart-card">
+      <div id="chart12" class="chart"></div>
+      <p class="insight">
+        Two-thirds of Australians aged 75 and over are digitally excluded or
+        highly excluded. Exclusion is also more than double the national rate
+        among people who did not complete secondary school and public-housing residents.
+      </p>
+      <p class="source">Source: <a href="https://digitalinclusionindex.org.au/wp-content/uploads/2025/10/ADII-Report-2025_V6-Remediated.pdf" target="_blank" rel="noopener">2025 Australian Digital Inclusion Index</a>.</p>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <h2>About this visualisation</h2>
+    <p><strong>Author:</strong> Ali Alotaibi &nbsp;·&nbsp; <strong>Date:</strong> October 2026</p>
+    <p><strong>Audience and purpose:</strong> Designed for an average Australian audience, this visualisation explains how government services are becoming more digital while access, affordability and digital ability remain uneven across places and population groups.</p>
+    <p><strong>Data:</strong> Services Australia annual performance reporting, the 2025 Australian Digital Inclusion Index and First Nations Digital Inclusion Snapshot, the 2023 ADII for historical comparison, and Australian Bureau of Statistics population estimates.</p>
+    <p><strong>Interaction:</strong> Hover over chart marks and map symbols to reveal exact values and contextual details.</p>
+    <p><strong>AI acknowledgement:</strong> Generative AI (ChatGPT, OpenAI) was used to assist with Vega-Lite coding, debugging, wording and design feedback. Data values and final design decisions were checked against the cited primary sources.</p>
+
+</main>
+
+<script>
+  const charts = [
+    ["chart1", "vega/chart1_digital_interactions.vg.json"],
+    ["chart2", "vega/chart2_program_digital_takeup.vg.json"],
+    ["chart3", "vega/chart3_channel_satisfaction.vg.json"],
+    ["chart5", "vega/chart5_channel_satisfaction_change.vg.json"],
+    ["chart4", "vega/chart4_satisfaction_drivers_heatmap.vg.json"],
+    ["chart6", "vega/chart6_state_adii_map.vg.json"],
+    ["chart7", "vega/chart7_first_nations_gap_map.vg.json"],
+    ["chart8", "vega/chart8_population_cartogram.vg.json"],
+    ["chart9", "vega/chart9_remoteness_profiles.vg.json"],
+    ["chart10", "vega/chart10_capital_vs_rest.vg.json"],
+    ["chart11", "vega/chart11_access_ability_progress.vg.json"],
+    ["chart12", "vega/chart12_digital_exclusion_groups.vg.json"]
+  ];
+
+  charts.forEach(([id, spec]) => {
+    vegaEmbed(`#${id}`, spec, { actions: false })
+      .then(() => console.log(`${id} loaded`))
+      .catch((error) => {
+        console.error(error);
+        document.getElementById(id).innerHTML =
+          `<p style="color:#b42318;font-weight:600">Chart error: ${error.message}</p>`;
+      });
+  });
+</script>
+
+</body>
+</html>

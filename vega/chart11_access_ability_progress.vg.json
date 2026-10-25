@@ -1,0 +1,294 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Connected scatterplot showing national improvement in Access and Digital Ability from 2023 to 2025.",
+  "width": 650,
+  "height": 420,
+  "title": {
+    "text": "Australia improved in both access and digital ability",
+    "subtitle": "Connected trajectory of national Access and Digital Ability scores, 2023 \u2192 2025."
+  },
+  "data": {
+    "url": "data/chart11_access_ability_progress.csv",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 4,
+        "color": "#5F6B7A"
+      },
+      "encoding": {
+        "x": {
+          "field": "access",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              70,
+              79
+            ]
+          },
+          "axis": {
+            "title": "Access score",
+            "grid": true,
+            "tickCount": 6
+          }
+        },
+        "y": {
+          "field": "digital_ability",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              62,
+              76
+            ]
+          },
+          "axis": {
+            "title": "Digital Ability score",
+            "grid": true,
+            "tickCount": 7
+          }
+        },
+        "order": {
+          "field": "year_order",
+          "type": "ordinal"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 300,
+        "stroke": "white",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "access",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              70,
+              79
+            ]
+          }
+        },
+        "y": {
+          "field": "digital_ability",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              62,
+              76
+            ]
+          }
+        },
+        "color": {
+          "field": "year",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "2023",
+              "2025"
+            ],
+            "range": [
+              "#9AA4B2",
+              "#1565C0"
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "year",
+            "type": "nominal",
+            "title": "Year"
+          },
+          {
+            "field": "access",
+            "type": "quantitative",
+            "title": "Access",
+            "format": ".1f"
+          },
+          {
+            "field": "digital_ability",
+            "type": "quantitative",
+            "title": "Digital Ability",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 13,
+        "fontWeight": "bold",
+        "dy": -18
+      },
+      "encoding": {
+        "x": {
+          "field": "access",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              70,
+              79
+            ]
+          }
+        },
+        "y": {
+          "field": "digital_ability",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              62,
+              76
+            ]
+          }
+        },
+        "text": {
+          "field": "year",
+          "type": "nominal"
+        },
+        "color": {
+          "field": "year",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "2023",
+              "2025"
+            ],
+            "range": [
+              "#6C757D",
+              "#1565C0"
+            ]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "access": 74.55,
+            "digital_ability": 69.2,
+            "label": "Up and right = improvement"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "color": "#495057",
+        "angle": -28,
+        "dy": -8
+      },
+      "encoding": {
+        "x": {
+          "field": "access",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              70,
+              79
+            ]
+          }
+        },
+        "y": {
+          "field": "digital_ability",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              62,
+              76
+            ]
+          }
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "access": 76.8,
+            "digital_ability": 73.6,
+            "label": "Access +4.8\nDigital Ability +8.7"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 18,
+        "dy": 8,
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "color": "#1565C0",
+        "lineBreak": "\n"
+      },
+      "encoding": {
+        "x": {
+          "field": "access",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              70,
+              79
+            ]
+          }
+        },
+        "y": {
+          "field": "digital_ability",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              62,
+              76
+            ]
+          }
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": null,
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFont": "IBM Plex Sans",
+      "titleFont": "IBM Plex Sans",
+      "labelColor": "#343A40",
+      "titleColor": "#343A40",
+      "gridColor": "#E9ECEF",
+      "domainColor": "#ADB5BD",
+      "tickColor": "#CED4DA"
+    },
+    "title": {
+      "font": "IBM Plex Sans",
+      "fontSize": 20,
+      "fontWeight": "bold",
+      "subtitleFont": "IBM Plex Sans",
+      "subtitleFontSize": 12,
+      "subtitleColor": "#6C757D",
+      "anchor": "start",
+      "color": "#212529"
+    },
+    "legend": {
+      "labelFont": "IBM Plex Sans",
+      "titleFont": "IBM Plex Sans"
+    }
+  }
+}

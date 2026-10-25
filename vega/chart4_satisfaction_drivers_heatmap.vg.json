@@ -1,0 +1,161 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Heatmap of customer satisfaction drivers by Services Australia program.",
+  "width": 700,
+  "height": 260,
+  "title": {
+    "text": "Time and effort are the biggest pain points",
+    "subtitle": "Fair treatment scores strongly across programs, while Child Support is weakest on time and effort."
+  },
+  "data": {
+    "url": "data/chart4_satisfaction_drivers_heatmap.csv",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "cornerRadius": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "driver",
+          "type": "nominal",
+          "sort": [
+            "Perceived quality",
+            "Personalised service",
+            "Communications",
+            "Time to receive service",
+            "Fair treatment",
+            "Effort"
+          ],
+          "axis": {
+            "title": null,
+            "labelAngle": -25,
+            "labelLimit": 140
+          }
+        },
+        "y": {
+          "field": "program",
+          "type": "nominal",
+          "sort": [
+            "Social security",
+            "Health customer",
+            "Child support",
+            "Health provider"
+          ],
+          "axis": {
+            "title": null
+          }
+        },
+        "color": {
+          "field": "score",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              50,
+              95
+            ],
+            "scheme": "yellowgreenblue"
+          },
+          "legend": {
+            "title": "Score"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "program",
+            "type": "nominal",
+            "title": "Program"
+          },
+          {
+            "field": "driver",
+            "type": "nominal",
+            "title": "Driver"
+          },
+          {
+            "field": "score",
+            "type": "quantitative",
+            "title": "Score",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "x": {
+          "field": "driver",
+          "type": "nominal",
+          "sort": [
+            "Perceived quality",
+            "Personalised service",
+            "Communications",
+            "Time to receive service",
+            "Fair treatment",
+            "Effort"
+          ]
+        },
+        "y": {
+          "field": "program",
+          "type": "nominal",
+          "sort": [
+            "Social security",
+            "Health customer",
+            "Child support",
+            "Health provider"
+          ]
+        },
+        "text": {
+          "field": "score",
+          "type": "quantitative",
+          "format": ".1f"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.score >= 84",
+            "value": "white"
+          },
+          "value": "#202124"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": null,
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFont": "IBM Plex Sans",
+      "titleFont": "IBM Plex Sans",
+      "labelColor": "#343A40",
+      "titleColor": "#343A40",
+      "gridColor": "#E9ECEF",
+      "domainColor": "#ADB5BD",
+      "tickColor": "#CED4DA"
+    },
+    "legend": {
+      "labelFont": "IBM Plex Sans",
+      "titleFont": "IBM Plex Sans",
+      "labelColor": "#343A40",
+      "titleColor": "#343A40"
+    },
+    "title": {
+      "font": "IBM Plex Sans",
+      "fontSize": 20,
+      "fontWeight": "bold",
+      "subtitleFont": "IBM Plex Sans",
+      "subtitleFontSize": 12,
+      "subtitleColor": "#6C757D",
+      "anchor": "start",
+      "color": "#212529"
+    }
+  }
+}

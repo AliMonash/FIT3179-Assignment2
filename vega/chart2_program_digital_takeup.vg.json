@@ -1,0 +1,225 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Dumbbell chart comparing digital take-up with self-manageable work completed digitally.",
+  "width": 700,
+  "height": 260,
+  "title": {
+    "text": "Digital self-service varies sharply by program",
+    "subtitle": "Health is almost fully digital; Child Support remains much less self-manageable."
+  },
+  "data": {
+    "url": "data/chart2_program_digital_takeup.csv",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "layer": [
+    {
+      "transform": [
+        {
+          "filter": "datum.is_total === 'No'"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 3,
+        "color": "#CED4DA"
+      },
+      "encoding": {
+        "y": {
+          "field": "program",
+          "type": "nominal",
+          "sort": [
+            "Health",
+            "Social security",
+            "Child support"
+          ],
+          "axis": {
+            "title": null
+          }
+        },
+        "x": {
+          "field": "take_up_percent",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              60,
+              100
+            ]
+          },
+          "axis": {
+            "title": "Percent (%)"
+          }
+        },
+        "x2": {
+          "field": "self_manage_percent"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.is_total === 'No'"
+        },
+        {
+          "fold": [
+            "take_up_percent",
+            "self_manage_percent"
+          ],
+          "as": [
+            "measure",
+            "value"
+          ]
+        },
+        {
+          "calculate": "datum.measure === 'take_up_percent' ? 'Digital take-up' : 'Self-managed digitally'",
+          "as": "measure_label"
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 130,
+        "stroke": "white",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "y": {
+          "field": "program",
+          "type": "nominal",
+          "sort": [
+            "Health",
+            "Social security",
+            "Child support"
+          ],
+          "axis": {
+            "title": null
+          }
+        },
+        "x": {
+          "field": "value",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              60,
+              100
+            ]
+          }
+        },
+        "color": {
+          "field": "measure_label",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Digital take-up",
+              "Self-managed digitally"
+            ],
+            "range": [
+              "#1565C0",
+              "#00897B"
+            ]
+          },
+          "legend": {
+            "title": null,
+            "orient": "bottom",
+            "columns": 2
+          }
+        },
+        "tooltip": [
+          {
+            "field": "program",
+            "type": "nominal",
+            "title": "Program"
+          },
+          {
+            "field": "measure_label",
+            "type": "nominal",
+            "title": "Measure"
+          },
+          {
+            "field": "value",
+            "type": "quantitative",
+            "title": "Percent",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.is_total === 'Yes'"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "strokeDash": [
+          5,
+          5
+        ],
+        "color": "#6C757D"
+      },
+      "encoding": {
+        "x": {
+          "field": "self_manage_percent",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.is_total === 'Yes'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -5,
+        "dy": -112,
+        "fontSize": 10,
+        "color": "#6C757D"
+      },
+      "encoding": {
+        "x": {
+          "field": "self_manage_percent",
+          "type": "quantitative"
+        },
+        "text": {
+          "value": "Agency self-managed average: 95.0%"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": null,
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFont": "IBM Plex Sans",
+      "titleFont": "IBM Plex Sans",
+      "labelColor": "#343A40",
+      "titleColor": "#343A40",
+      "gridColor": "#E9ECEF",
+      "domainColor": "#ADB5BD",
+      "tickColor": "#CED4DA"
+    },
+    "legend": {
+      "labelFont": "IBM Plex Sans",
+      "titleFont": "IBM Plex Sans",
+      "labelColor": "#343A40",
+      "titleColor": "#343A40"
+    },
+    "title": {
+      "font": "IBM Plex Sans",
+      "fontSize": 20,
+      "fontWeight": "bold",
+      "subtitleFont": "IBM Plex Sans",
+      "subtitleFontSize": 12,
+      "subtitleColor": "#6C757D",
+      "anchor": "start",
+      "color": "#212529"
+    }
+  }
+}

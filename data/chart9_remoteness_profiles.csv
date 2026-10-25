@@ -1,0 +1,21 @@
+remoteness,metric,metric_order,score
+Major cities,Overall ADII,1,75.1
+Major cities,Access,2,78.3
+Major cities,Affordability,3,71.5
+Major cities,Digital Ability,4,75.4
+Inner regional,Overall ADII,1,69.7
+Inner regional,Access,2,73.4
+Inner regional,Affordability,3,67.1
+Inner regional,Digital Ability,4,68.6
+Outer regional,Overall ADII,1,69.4
+Outer regional,Access,2,72.7
+Outer regional,Affordability,3,66.5
+Outer regional,Digital Ability,4,68.9
+Remote,Overall ADII,1,70.6
+Remote,Access,2,70.8
+Remote,Affordability,3,69.1
+Remote,Digital Ability,4,71.9
+Very remote,Overall ADII,1,62.5
+Very remote,Access,2,57.4
+Very remote,Affordability,3,66.6
+Very remote,Digital Ability,4,63.6

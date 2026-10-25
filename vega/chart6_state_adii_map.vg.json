@@ -1,0 +1,177 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "2025 Australian Digital Inclusion Index by state and territory.",
+  "width": 700,
+  "height": 500,
+  "title": {
+    "text": "Digital inclusion varies across Australia",
+    "subtitle": "2025 Australian Digital Inclusion Index (ADII). Higher scores indicate greater digital inclusion."
+  },
+  "projection": {
+    "type": "equalEarth"
+  },
+  "config": {
+    "background": null,
+    "view": {
+      "stroke": null
+    },
+    "title": {
+      "font": "IBM Plex Sans",
+      "fontSize": 20,
+      "fontWeight": "bold",
+      "subtitleFont": "IBM Plex Sans",
+      "subtitleFontSize": 12,
+      "subtitleColor": "#6C757D",
+      "anchor": "start",
+      "color": "#212529"
+    },
+    "legend": {
+      "labelFont": "IBM Plex Sans",
+      "titleFont": "IBM Plex Sans"
+    },
+    "axis": {
+      "labelFont": "IBM Plex Sans",
+      "titleFont": "IBM Plex Sans"
+    }
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/chart6_state_adii.csv",
+        "format": {
+          "type": "csv"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "state_code",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/syncfusion/flutter-examples/dee00ad6c7f785dcf5e7f326c6d528ed5b2643bc/assets/australia.json",
+              "format": {
+                "type": "json",
+                "property": "features"
+              }
+            },
+            "key": "properties.STATE_CODE"
+          },
+          "as": "geo"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "white",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "shape": {
+          "field": "geo",
+          "type": "geojson"
+        },
+        "color": {
+          "field": "adii",
+          "type": "quantitative",
+          "scale": {
+            "scheme": "blues",
+            "domain": [
+              69,
+              80
+            ]
+          },
+          "legend": {
+            "title": "ADII score"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State / territory"
+          },
+          {
+            "field": "abbr",
+            "type": "nominal",
+            "title": "Abbreviation"
+          },
+          {
+            "field": "adii",
+            "type": "quantitative",
+            "title": "ADII 2025",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 149.13,
+            "lat": -35.28
+          },
+          {
+            "lon": 146.8,
+            "lat": -42.0
+          }
+        ]
+      },
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 50,
+        "color": "#173B72",
+        "stroke": "white",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 149.13,
+            "lat": -35.28,
+            "label": "ACT 79.5 \u2014 highest"
+          },
+          {
+            "lon": 146.8,
+            "lat": -42.0,
+            "label": "TAS 69.4 \u2014 lowest"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 8,
+        "dy": -7,
+        "font": "IBM Plex Sans",
+        "fontSize": 10,
+        "fontWeight": "bold",
+        "color": "#202124"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,212 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Dorling-style cartogram of Australian state populations coloured by 2025 ADII score.",
+  "width": 700,
+  "height": 500,
+  "title": {
+    "text": "Population changes how we see the digital divide",
+    "subtitle": "Circle area = population at 31 March 2026; colour = 2025 ADII score. Positions roughly preserve Australian geography."
+  },
+  "data": {
+    "url": "data/chart8_population_cartogram.csv",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "circle",
+        "opacity": 0.9,
+        "stroke": "white",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "axis": null,
+          "scale": {
+            "domain": [
+              0,
+              100
+            ]
+          }
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "axis": null,
+          "scale": {
+            "domain": [
+              100,
+              0
+            ]
+          }
+        },
+        "size": {
+          "field": "population_thousands",
+          "type": "quantitative",
+          "scale": {
+            "type": "sqrt",
+            "domain": [
+              0,
+              9000
+            ],
+            "range": [
+              0,
+              15000
+            ]
+          },
+          "legend": null
+        },
+        "color": {
+          "field": "adii",
+          "type": "quantitative",
+          "scale": {
+            "scheme": "blues",
+            "domain": [
+              69,
+              80
+            ]
+          },
+          "legend": {
+            "title": "ADII score"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State / territory"
+          },
+          {
+            "field": "population_thousands",
+            "type": "quantitative",
+            "title": "Population ('000)",
+            "format": ",.1f"
+          },
+          {
+            "field": "adii",
+            "type": "quantitative",
+            "title": "ADII 2025",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontWeight": "bold",
+        "fontSize": 13,
+        "color": "#202124",
+        "dy": -5
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ]
+          }
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              100,
+              0
+            ]
+          }
+        },
+        "text": {
+          "field": "abbr",
+          "type": "nominal"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.adii >= 77",
+            "value": "white"
+          },
+          "value": "#202124"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "calculate": "datum.population_millions >= 1 ? format(datum.population_millions, '.1f') + 'm' : format(datum.population_thousands, '.0f') + 'k'",
+          "as": "pop_label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 10,
+        "color": "#202124",
+        "dy": 11
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ]
+          }
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              100,
+              0
+            ]
+          }
+        },
+        "text": {
+          "field": "pop_label",
+          "type": "nominal"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.adii >= 77",
+            "value": "white"
+          },
+          "value": "#202124"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": null,
+    "view": {
+      "stroke": null
+    },
+    "title": {
+      "font": "IBM Plex Sans",
+      "fontSize": 20,
+      "fontWeight": "bold",
+      "subtitleFont": "IBM Plex Sans",
+      "subtitleFontSize": 12,
+      "subtitleColor": "#6C757D",
+      "anchor": "start",
+      "color": "#212529"
+    },
+    "legend": {
+      "labelFont": "IBM Plex Sans",
+      "titleFont": "IBM Plex Sans"
+    },
+    "axis": {
+      "labelFont": "IBM Plex Sans",
+      "titleFont": "IBM Plex Sans"
+    }
+  }
+}

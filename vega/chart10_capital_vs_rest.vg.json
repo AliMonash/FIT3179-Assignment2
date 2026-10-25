@@ -1,0 +1,369 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Slopegraph comparing capital cities with the rest of Australia across 2025 ADII dimensions.",
+  "width": 700,
+  "height": 360,
+  "title": {
+    "text": "Capital cities remain ahead across every digital inclusion dimension",
+    "subtitle": "2025 ADII comparison; endpoint labels are rounded to one decimal place."
+  },
+  "data": {
+    "url": "data/chart10_capital_vs_rest.csv",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3,
+        "opacity": 0.8
+      },
+      "encoding": {
+        "x": {
+          "field": "group",
+          "type": "ordinal",
+          "sort": [
+            "Capital cities",
+            "Rest of Australia"
+          ],
+          "axis": {
+            "title": null,
+            "labelAngle": 0,
+            "labelFontSize": 12
+          }
+        },
+        "y": {
+          "field": "score",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              64,
+              80
+            ]
+          },
+          "axis": {
+            "title": "ADII score",
+            "grid": true
+          }
+        },
+        "color": {
+          "field": "dimension",
+          "type": "nominal",
+          "sort": [
+            "Overall ADII",
+            "Access",
+            "Affordability",
+            "Digital Ability"
+          ],
+          "scale": {
+            "domain": [
+              "Overall ADII",
+              "Access",
+              "Affordability",
+              "Digital Ability"
+            ],
+            "range": [
+              "#345995",
+              "#03CEA4",
+              "#F18F01",
+              "#D1495B"
+            ]
+          },
+          "legend": {
+            "title": "Dimension",
+            "orient": "bottom"
+          }
+        },
+        "detail": {
+          "field": "dimension"
+        },
+        "tooltip": [
+          {
+            "field": "dimension",
+            "type": "nominal",
+            "title": "Dimension"
+          },
+          {
+            "field": "group",
+            "type": "nominal",
+            "title": "Area"
+          },
+          {
+            "field": "score",
+            "type": "quantitative",
+            "title": "Score",
+            "format": ".1f"
+          },
+          {
+            "field": "gap",
+            "type": "quantitative",
+            "title": "Gap",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 120,
+        "stroke": "white",
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "x": {
+          "field": "group",
+          "type": "ordinal",
+          "sort": [
+            "Capital cities",
+            "Rest of Australia"
+          ]
+        },
+        "y": {
+          "field": "score",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              64,
+              80
+            ]
+          }
+        },
+        "color": {
+          "field": "dimension",
+          "type": "nominal",
+          "sort": [
+            "Overall ADII",
+            "Access",
+            "Affordability",
+            "Digital Ability"
+          ],
+          "scale": {
+            "domain": [
+              "Overall ADII",
+              "Access",
+              "Affordability",
+              "Digital Ability"
+            ],
+            "range": [
+              "#345995",
+              "#03CEA4",
+              "#F18F01",
+              "#D1495B"
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "dimension",
+            "type": "nominal",
+            "title": "Dimension"
+          },
+          {
+            "field": "group",
+            "type": "nominal",
+            "title": "Area"
+          },
+          {
+            "field": "score",
+            "type": "quantitative",
+            "title": "Score",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.group === 'Capital cities'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -10,
+        "fontSize": 11,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "x": {
+          "field": "group",
+          "type": "ordinal",
+          "sort": [
+            "Capital cities",
+            "Rest of Australia"
+          ]
+        },
+        "y": {
+          "field": "score",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              64,
+              80
+            ]
+          }
+        },
+        "text": {
+          "field": "score",
+          "type": "quantitative",
+          "format": ".1f"
+        },
+        "color": {
+          "field": "dimension",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Overall ADII",
+              "Access",
+              "Affordability",
+              "Digital Ability"
+            ],
+            "range": [
+              "#345995",
+              "#03CEA4",
+              "#F18F01",
+              "#D1495B"
+            ]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.group === 'Rest of Australia'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "fontSize": 11,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "x": {
+          "field": "group",
+          "type": "ordinal",
+          "sort": [
+            "Capital cities",
+            "Rest of Australia"
+          ]
+        },
+        "y": {
+          "field": "score",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              64,
+              80
+            ]
+          }
+        },
+        "text": {
+          "field": "score",
+          "type": "quantitative",
+          "format": ".1f"
+        },
+        "color": {
+          "field": "dimension",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Overall ADII",
+              "Access",
+              "Affordability",
+              "Digital Ability"
+            ],
+            "range": [
+              "#345995",
+              "#03CEA4",
+              "#F18F01",
+              "#D1495B"
+            ]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.dimension === 'Digital Ability' && datum.group === 'Rest of Australia'"
+        },
+        {
+          "calculate": "'Largest gap: 7.8 points'",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 65,
+        "dy": -18,
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "color": "#B23A2D"
+      },
+      "encoding": {
+        "x": {
+          "field": "group",
+          "type": "ordinal",
+          "sort": [
+            "Capital cities",
+            "Rest of Australia"
+          ]
+        },
+        "y": {
+          "field": "score",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              64,
+              80
+            ]
+          }
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": null,
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFont": "IBM Plex Sans",
+      "titleFont": "IBM Plex Sans",
+      "labelColor": "#343A40",
+      "titleColor": "#343A40",
+      "gridColor": "#E9ECEF",
+      "domainColor": "#ADB5BD",
+      "tickColor": "#CED4DA"
+    },
+    "title": {
+      "font": "IBM Plex Sans",
+      "fontSize": 20,
+      "fontWeight": "bold",
+      "subtitleFont": "IBM Plex Sans",
+      "subtitleFontSize": 12,
+      "subtitleColor": "#6C757D",
+      "anchor": "start",
+      "color": "#212529"
+    },
+    "legend": {
+      "labelFont": "IBM Plex Sans",
+      "titleFont": "IBM Plex Sans"
+    }
+  }
+}
