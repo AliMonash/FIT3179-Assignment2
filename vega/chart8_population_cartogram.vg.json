@@ -58,7 +58,22 @@
               15000
             ]
           },
-          "legend": null
+          "legend": {
+            "title": "Population",
+            "values": [
+              500,
+              2000,
+              5000,
+              8500
+            ],
+            "labelExpr": "datum.value >= 1000 ? format(datum.value/1000, '.1f') + 'm' : format(datum.value, '.0f') + 'k'",
+            "orient": "right",
+            "columns": 2,
+            "symbolFillColor": "#D6DEE8",
+            "symbolStrokeColor": "#6C757D",
+            "symbolOpacity": 0.9,
+            "offset": 12
+          }
         },
         "color": {
           "field": "adii",
