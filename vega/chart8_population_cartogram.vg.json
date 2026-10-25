@@ -27,10 +27,7 @@
           "type": "quantitative",
           "axis": null,
           "scale": {
-            "domain": [
-              0,
-              100
-            ]
+            "domain": [0, 100]
           }
         },
         "y": {
@@ -38,10 +35,7 @@
           "type": "quantitative",
           "axis": null,
           "scale": {
-            "domain": [
-              100,
-              0
-            ]
+            "domain": [100, 0]
           }
         },
         "size": {
@@ -49,30 +43,21 @@
           "type": "quantitative",
           "scale": {
             "type": "sqrt",
-            "domain": [
-              0,
-              9000
-            ],
-            "range": [
-              0,
-              15000
-            ]
+            "domain": [0, 9000],
+            "range": [0, 15000]
           },
           "legend": {
-            "title": "Population",
-            "values": [
-              500,
-              2000,
-              5000,
-              8500
-            ],
+            "title": "Population (circle area)",
+            "values": [500, 2000, 5000],
             "labelExpr": "datum.value >= 1000 ? format(datum.value/1000, '.1f') + 'm' : format(datum.value, '.0f') + 'k'",
             "orient": "right",
-            "columns": 2,
+            "columns": 1,
             "symbolFillColor": "#D6DEE8",
             "symbolStrokeColor": "#6C757D",
-            "symbolOpacity": 0.9,
-            "offset": 12
+            "symbolOpacity": 0.85,
+            "labelOffset": 8,
+            "rowPadding": 2,
+            "offset": 10
           }
         },
         "color": {
@@ -80,10 +65,7 @@
           "type": "quantitative",
           "scale": {
             "scheme": "blues",
-            "domain": [
-              69,
-              80
-            ]
+            "domain": [69, 80]
           },
           "legend": {
             "title": "ADII score"
@@ -123,20 +105,14 @@
           "field": "x",
           "type": "quantitative",
           "scale": {
-            "domain": [
-              0,
-              100
-            ]
+            "domain": [0, 100]
           }
         },
         "y": {
           "field": "y",
           "type": "quantitative",
           "scale": {
-            "domain": [
-              100,
-              0
-            ]
+            "domain": [100, 0]
           }
         },
         "text": {
@@ -170,20 +146,14 @@
           "field": "x",
           "type": "quantitative",
           "scale": {
-            "domain": [
-              0,
-              100
-            ]
+            "domain": [0, 100]
           }
         },
         "y": {
           "field": "y",
           "type": "quantitative",
           "scale": {
-            "domain": [
-              100,
-              0
-            ]
+            "domain": [100, 0]
           }
         },
         "text": {
