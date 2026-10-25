@@ -1,0 +1,163 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Dorling-style cartogram of Australian state populations coloured by 2025 ADII score, with a dedicated legend panel using the same population-size scale as the cartogram.",
+  "title": {
+    "text": "Population changes how we see the digital divide",
+    "subtitle": "Circle area = population at 31 March 2026; colour = 2025 ADII score. Positions roughly preserve Australian geography."
+  },
+  "hconcat": [
+    {
+      "width": 560,
+      "height": 500,
+      "data": {
+        "url": "data/chart8_population_cartogram.csv",
+        "format": {"type": "csv"}
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "circle",
+            "opacity": 0.9,
+            "stroke": "white",
+            "strokeWidth": 2
+          },
+          "encoding": {
+            "x": {"field": "x", "type": "quantitative", "axis": null, "scale": {"domain": [0, 100]}},
+            "y": {"field": "y", "type": "quantitative", "axis": null, "scale": {"domain": [100, 0]}},
+            "size": {
+              "field": "population_thousands",
+              "type": "quantitative",
+              "scale": {"type": "sqrt", "domain": [0, 9000], "range": [0, 15000]},
+              "legend": null
+            },
+            "color": {
+              "field": "adii",
+              "type": "quantitative",
+              "scale": {"scheme": "blues", "domain": [69, 80]},
+              "legend": null
+            },
+            "tooltip": [
+              {"field": "state", "type": "nominal", "title": "State / territory"},
+              {"field": "population_thousands", "type": "quantitative", "title": "Population ('000)", "format": ",.1f"},
+              {"field": "adii", "type": "quantitative", "title": "ADII 2025", "format": ".1f"}
+            ]
+          }
+        },
+        {
+          "mark": {"type": "text", "fontWeight": "bold", "fontSize": 13, "color": "#202124", "dy": -5},
+          "encoding": {
+            "x": {"field": "x", "type": "quantitative", "scale": {"domain": [0, 100]}},
+            "y": {"field": "y", "type": "quantitative", "scale": {"domain": [100, 0]}},
+            "text": {"field": "abbr", "type": "nominal"},
+            "color": {"condition": {"test": "datum.adii >= 77", "value": "white"}, "value": "#202124"}
+          }
+        },
+        {
+          "transform": [{"calculate": "datum.population_millions >= 1 ? format(datum.population_millions, '.1f') + 'm' : format(datum.population_thousands, '.0f') + 'k'", "as": "pop_label"}],
+          "mark": {"type": "text", "fontSize": 10, "color": "#202124", "dy": 11},
+          "encoding": {
+            "x": {"field": "x", "type": "quantitative", "scale": {"domain": [0, 100]}},
+            "y": {"field": "y", "type": "quantitative", "scale": {"domain": [100, 0]}},
+            "text": {"field": "pop_label", "type": "nominal"},
+            "color": {"condition": {"test": "datum.adii >= 77", "value": "white"}, "value": "#202124"}
+          }
+        }
+      ]
+    },
+    {
+      "width": 300,
+      "height": 500,
+      "layer": [
+        {
+          "data": {"values": [{"x": 20, "y": 12, "label": "ADII score"}]},
+          "mark": {"type": "text", "font": "IBM Plex Sans", "fontSize": 11, "fontWeight": "bold", "align": "left", "baseline": "top", "color": "#212529"},
+          "encoding": {
+            "x": {"field": "x", "type": "quantitative", "scale": {"domain": [0, 300]}, "axis": null},
+            "y": {"field": "y", "type": "quantitative", "scale": {"domain": [500, 0]}, "axis": null},
+            "text": {"field": "label", "type": "nominal"}
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {"score": 80, "x1": 20, "x2": 38, "y1": 35, "y2": 47},
+              {"score": 79, "x1": 20, "x2": 38, "y1": 47, "y2": 59},
+              {"score": 78, "x1": 20, "x2": 38, "y1": 59, "y2": 71},
+              {"score": 77, "x1": 20, "x2": 38, "y1": 71, "y2": 83},
+              {"score": 76, "x1": 20, "x2": 38, "y1": 83, "y2": 95},
+              {"score": 75, "x1": 20, "x2": 38, "y1": 95, "y2": 107},
+              {"score": 74, "x1": 20, "x2": 38, "y1": 107, "y2": 119},
+              {"score": 73, "x1": 20, "x2": 38, "y1": 119, "y2": 131},
+              {"score": 72, "x1": 20, "x2": 38, "y1": 131, "y2": 143},
+              {"score": 71, "x1": 20, "x2": 38, "y1": 143, "y2": 155},
+              {"score": 70, "x1": 20, "x2": 38, "y1": 155, "y2": 167},
+              {"score": 69, "x1": 20, "x2": 38, "y1": 167, "y2": 179}
+            ]
+          },
+          "mark": {"type": "rect"},
+          "encoding": {
+            "x": {"field": "x1", "type": "quantitative", "scale": {"domain": [0, 300]}, "axis": null},
+            "x2": {"field": "x2"},
+            "y": {"field": "y1", "type": "quantitative", "scale": {"domain": [500, 0]}, "axis": null},
+            "y2": {"field": "y2"},
+            "color": {"field": "score", "type": "quantitative", "scale": {"scheme": "blues", "domain": [69, 80]}, "legend": null}
+          }
+        },
+        {
+          "data": {"values": [{"x": 45, "y": 41, "label": "80"},{"x": 45, "y": 65, "label": "78"},{"x": 45, "y": 89, "label": "76"},{"x": 45, "y": 113, "label": "74"},{"x": 45, "y": 137, "label": "72"},{"x": 45, "y": 161, "label": "70"}]},
+          "mark": {"type": "text", "font": "IBM Plex Sans", "fontSize": 10, "align": "left", "baseline": "middle", "color": "#212529"},
+          "encoding": {
+            "x": {"field": "x", "type": "quantitative", "scale": {"domain": [0, 300]}, "axis": null},
+            "y": {"field": "y", "type": "quantitative", "scale": {"domain": [500, 0]}, "axis": null},
+            "text": {"field": "label", "type": "nominal"}
+          }
+        },
+        {
+          "data": {"values": [{"x": 20, "y": 215, "label": "Population"}]},
+          "mark": {"type": "text", "font": "IBM Plex Sans", "fontSize": 11, "fontWeight": "bold", "align": "left", "baseline": "middle", "color": "#212529"},
+          "encoding": {
+            "x": {"field": "x", "type": "quantitative", "scale": {"domain": [0, 300]}, "axis": null},
+            "y": {"field": "y", "type": "quantitative", "scale": {"domain": [500, 0]}, "axis": null},
+            "text": {"field": "label", "type": "nominal"}
+          }
+        },
+        {
+          "data": {"values": [
+            {"x": 85, "y": 300, "population": 8000, "label": "8.0m"},
+            {"x": 215, "y": 300, "population": 5000, "label": "5.0m"},
+            {"x": 85, "y": 430, "population": 2000, "label": "2.0m"},
+            {"x": 215, "y": 430, "population": 500, "label": "500k"}
+          ]},
+          "mark": {"type": "circle", "filled": true, "fill": "#D6DEE8", "fillOpacity": 0.9, "stroke": "#6C757D", "strokeWidth": 1.2},
+          "encoding": {
+            "x": {"field": "x", "type": "quantitative", "scale": {"domain": [0, 300]}, "axis": null},
+            "y": {"field": "y", "type": "quantitative", "scale": {"domain": [500, 0]}, "axis": null},
+            "size": {"field": "population", "type": "quantitative", "scale": {"type": "sqrt", "domain": [0, 9000], "range": [0, 15000]}, "legend": null}
+          }
+        },
+        {
+          "data": {"values": [
+            {"x": 85, "y": 300, "label": "8.0m"},
+            {"x": 215, "y": 300, "label": "5.0m"},
+            {"x": 85, "y": 430, "label": "2.0m"},
+            {"x": 215, "y": 430, "label": "500k"}
+          ]},
+          "mark": {"type": "text", "font": "IBM Plex Sans", "fontSize": 10, "fontWeight": "bold", "align": "center", "baseline": "middle", "color": "#343A40"},
+          "encoding": {
+            "x": {"field": "x", "type": "quantitative", "scale": {"domain": [0, 300]}, "axis": null},
+            "y": {"field": "y", "type": "quantitative", "scale": {"domain": [500, 0]}, "axis": null},
+            "text": {"field": "label", "type": "nominal"}
+          }
+        }
+      ]
+    }
+  ],
+  "spacing": 22,
+  "config": {
+    "background": null,
+    "view": {"stroke": null},
+    "title": {"font": "IBM Plex Sans", "fontSize": 20, "fontWeight": "bold", "subtitleFont": "IBM Plex Sans", "subtitleFontSize": 12, "subtitleColor": "#6C757D", "anchor": "start", "color": "#212529"},
+    "legend": {"labelFont": "IBM Plex Sans", "titleFont": "IBM Plex Sans"},
+    "axis": {"labelFont": "IBM Plex Sans", "titleFont": "IBM Plex Sans"}
+  }
+}
