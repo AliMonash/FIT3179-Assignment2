@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Dorling-style cartogram of Australian state populations coloured by 2025 ADII score, with a compact custom population-size key.",
+  "description": "Dorling-style cartogram of Australian state populations coloured by 2025 ADII score, with a compact custom population-size key below the ADII legend.",
   "width": 700,
   "height": 500,
   "title": {
@@ -24,7 +24,7 @@
           "field": "x",
           "type": "quantitative",
           "axis": null,
-          "scale": {"domain": [0, 100]}
+          "scale": {"domain": [0, 120]}
         },
         "y": {
           "field": "y",
@@ -49,7 +49,13 @@
             "scheme": "blues",
             "domain": [69, 80]
           },
-          "legend": {"title": "ADII score"}
+          "legend": {
+            "title": "ADII score",
+            "orient": "right",
+            "gradientLength": 190,
+            "gradientThickness": 14,
+            "offset": 12
+          }
         },
         "tooltip": [
           {"field": "state", "type": "nominal", "title": "State / territory"},
@@ -67,7 +73,7 @@
         "dy": -5
       },
       "encoding": {
-        "x": {"field": "x", "type": "quantitative", "scale": {"domain": [0, 100]}},
+        "x": {"field": "x", "type": "quantitative", "scale": {"domain": [0, 120]}},
         "y": {"field": "y", "type": "quantitative", "scale": {"domain": [100, 0]}},
         "text": {"field": "abbr", "type": "nominal"},
         "color": {
@@ -90,7 +96,7 @@
         "dy": 11
       },
       "encoding": {
-        "x": {"field": "x", "type": "quantitative", "scale": {"domain": [0, 100]}},
+        "x": {"field": "x", "type": "quantitative", "scale": {"domain": [0, 120]}},
         "y": {"field": "y", "type": "quantitative", "scale": {"domain": [100, 0]}},
         "text": {"field": "pop_label", "type": "nominal"},
         "color": {
@@ -102,7 +108,7 @@
     {
       "data": {
         "values": [
-          {"x": 92, "y": 10, "label": "Population"}
+          {"x": 116, "y": 47, "label": "Population"}
         ]
       },
       "mark": {
@@ -114,7 +120,7 @@
         "color": "#212529"
       },
       "encoding": {
-        "x": {"field": "x", "type": "quantitative", "scale": {"domain": [0, 100]}},
+        "x": {"field": "x", "type": "quantitative", "scale": {"domain": [0, 120]}},
         "y": {"field": "y", "type": "quantitative", "scale": {"domain": [100, 0]}},
         "text": {"field": "label", "type": "nominal"}
       }
@@ -122,10 +128,10 @@
     {
       "data": {
         "values": [
-          {"x": 92, "y": 21, "population": 8000, "label": "8.0m"},
-          {"x": 92, "y": 36, "population": 5000, "label": "5.0m"},
-          {"x": 92, "y": 48, "population": 2000, "label": "2.0m"},
-          {"x": 92, "y": 57, "population": 500, "label": "500k"}
+          {"x": 116, "y": 59, "population": 8000, "label": "8.0m"},
+          {"x": 116, "y": 71, "population": 5000, "label": "5.0m"},
+          {"x": 116, "y": 83, "population": 2000, "label": "2.0m"},
+          {"x": 116, "y": 94, "population": 500, "label": "500k"}
         ]
       },
       "mark": {
@@ -137,7 +143,7 @@
         "strokeWidth": 1.2
       },
       "encoding": {
-        "x": {"field": "x", "type": "quantitative", "scale": {"domain": [0, 100]}},
+        "x": {"field": "x", "type": "quantitative", "scale": {"domain": [0, 120]}},
         "y": {"field": "y", "type": "quantitative", "scale": {"domain": [100, 0]}},
         "size": {
           "field": "population",
@@ -145,7 +151,7 @@
           "scale": {
             "type": "sqrt",
             "domain": [0, 8000],
-            "range": [500, 3600]
+            "range": [180, 1200]
           },
           "legend": null
         }
@@ -154,10 +160,10 @@
     {
       "data": {
         "values": [
-          {"x": 92, "y": 21, "label": "8.0m"},
-          {"x": 92, "y": 36, "label": "5.0m"},
-          {"x": 92, "y": 48, "label": "2.0m"},
-          {"x": 92, "y": 57, "label": "500k"}
+          {"x": 116, "y": 59, "label": "8.0m"},
+          {"x": 116, "y": 71, "label": "5.0m"},
+          {"x": 116, "y": 83, "label": "2.0m"},
+          {"x": 116, "y": 94, "label": "500k"}
         ]
       },
       "mark": {
@@ -170,7 +176,7 @@
         "color": "#343A40"
       },
       "encoding": {
-        "x": {"field": "x", "type": "quantitative", "scale": {"domain": [0, 100]}},
+        "x": {"field": "x", "type": "quantitative", "scale": {"domain": [0, 120]}},
         "y": {"field": "y", "type": "quantitative", "scale": {"domain": [100, 0]}},
         "text": {"field": "label", "type": "nominal"}
       }
